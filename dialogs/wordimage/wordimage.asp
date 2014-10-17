@@ -32,12 +32,12 @@
     <script type="text/javascript" src="tangram.js"></script>
     <script type="text/javascript" src="wordimage.js"></script>
     <script type="text/javascript">
+
         editor.setOpt({
             wordImageFieldName:"upfile",
             compressSide:0,
             maxImageSideLength:900
         });
-
             //全局变量
         var imageUrls = [],          //用于保存从服务器返回的图片信息数组
             selectedImageCount = 0,  //当前已选择的但未上传的图片数量
@@ -46,11 +46,9 @@
             optImageCompressBorder = editor.getOpt('imageCompressEnable') ? editor.getOpt('imageCompressBorder'):null,
             maxSize = editor.getOpt('imageMaxSize') / 1024,
             extension = editor.getOpt('imageAllowFiles').join(';').replace(/\./g, '*.');
-
         /* 添加额外的GET参数 */
         var params = utils.serializeParam(editor.queryCommandValue('serverparam')) || '',
             urlWidthParams = optImageUrl + (optImageUrl.indexOf('?') == -1 ? '?':'&') + params;
-
         utils.domReady(function(){
             //创建Flash相关的参数集合
             var flashOptions = {

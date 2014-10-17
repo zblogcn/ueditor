@@ -14,6 +14,7 @@
             <span tabSrc="video" class="focus" data-content-id="video"><var id="lang_tab_insertV"></var></span>
             <span tabSrc="upload" data-content-id="upload"><var id="lang_tab_uploadV"></var></span>
         </div>
+        <!--<span tabSrc="video" data-content-id="videoSearch"><var id="lang_tab_searchV"></var></span>-->
         <div id="tabBodys" class="tabbody">
             <div id="video" class="panel focus">
                <table><tr><td><label for="videoUrl" class="url"><var id="lang_video_url"></var></label></td><td><input id="videoUrl" type="text"></td></tr></table>
@@ -72,15 +73,9 @@
         </div>
     </div>
 </div>
-
-<!-- jquery -->
-<script type="text/javascript" src="../../third-party/jquery-1.10.2.min.js"></script>
-
-<!-- webuploader -->
+    <script type="text/javascript" src="../../../../../zb_system/script/common.js"></script>
 <script type="text/javascript" src="../../third-party/webuploader/webuploader.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../../third-party/webuploader/webuploader.css">
-
-<!-- video -->
 <script type="text/javascript" src="video.js"></script>
 </body>
 </html>

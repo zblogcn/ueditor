@@ -44,6 +44,7 @@ function addOkListener() {
 					break;
 				}
 			}
+
 		}
         editor.fireEvent('saveScene');
         hideFlash();
@@ -152,6 +153,7 @@ function createCopyButton(id, dataFrom) {
 			clipboard.setContentFuncName("getPasteData");
 			//clipboard.setMEFuncName("mouseEventHandler");
 		}
+
 	}, 500);
 }
 createCopyButton("clipboard", "localPath");
