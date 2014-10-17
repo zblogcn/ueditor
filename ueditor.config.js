@@ -33,17 +33,22 @@
         , serverUrl: URL + "php/controller.php"
 
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
-        , toolbars: [[
+        , toolbars: [
+        [
             'fullscreen', 'source', '|', 'undo', 'redo', '|',
-            'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', '|',
             'paragraph', 'fontfamily', 'fontsize', '|',
+            'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript','|',
+            'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist',
+            
+        ],
+        [
             'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
-            'link', 'unlink', '|',
-            'insertimage', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'insertcode', 'pagebreak', '|',
-            'horizontal', 'spechars', 'wordimage', '|',
-            'inserttable',  '|',
-            'preview', 'searchreplace', 'drafts'
-        ]]
+            'link', 'insertimage', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'inserttable', 'spechars', '|',
+            'horizontal', 'blockquote', 'wordimage', 'insertcode', '|',         
+            'removeformat', 'formatmatch', 'autotypeset',    
+            'searchreplace', 'pasteplain', 'drafts'
+        ]
+        ]
         //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
         //,labelMap:{
         //    'anchor':'', 'undo':''
