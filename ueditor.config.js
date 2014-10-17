@@ -37,13 +37,13 @@
             'fullscreen', 'source', '|', 'undo', 'redo', '|',
             'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', '|',
             'paragraph', 'fontfamily', 'fontsize', '|',
-            'directionalityltr', 'directionalityrtl', 'indent', '|',
+            'indent', '|',
             'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
-            'link', 'unlink', 'anchor', '|',
-            'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'insertframe', 'insertcode', 'pagebreak', '|',
+            'link', 'unlink', '|',
+            'insertimage', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'insertframe', 'insertcode', 'pagebreak', '|',
             'horizontal', 'spechars', 'wordimage', '|',
             'inserttable',  '|',
-            'print', 'preview', 'searchreplace', 'help', 'drafts'
+            'preview', 'searchreplace', 'drafts'
         ]]
         //当鼠标放在工具栏上时显示的tooltip提示,留空支持自动多语言配置，否则以配置值为准
         //,labelMap:{
