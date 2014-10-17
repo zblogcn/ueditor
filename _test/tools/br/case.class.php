@@ -85,7 +85,7 @@ class Kiss
         print '<link  href="../../../themes/default/_css/ueditor.css" type="text/css" rel="stylesheet" />' . "\n";
         print '<script type="text/javascript" src="js/tools.js"></script>' . "\n";
       
-        print '<script type="text/javascript" charset="utf-8" src="../../../third-party/SyntaxHighlighter/shCore.js"></script>' . "\n";        //                print '<script type="text/javascript" charset="utf-8" src="../../ueditor.config_src.js"></script>' . "\n";
+        print '<script type="text/javascript" charset="utf-8" src="../../../third-party/SyntaxHighlighter/shCore.pack.js"></script>' . "\n";        //                print '<script type="text/javascript" charset="utf-8" src="../../ueditor.config_src.js"></script>' . "\n";
         print '<script type="text/javascript" charset="utf-8" src="../../../ueditor.config.js"></script>' . "\n";
 
 
@@ -117,7 +117,7 @@ class Kiss
         print '<link  href="../../../themes/default/_css/ueditor.css" type="text/css" rel="stylesheet" />' . "\n";
         print '<script type="text/javascript" src="js/tools.js"></script>' . "\n";
 
-        print '<script type="text/javascript" charset="utf-8" src="../../../third-party/SyntaxHighlighter/shCore.js"></script>' . "\n";
+        print '<script type="text/javascript" charset="utf-8" src="../../../third-party/SyntaxHighlighter/shCore.pack.js"></script>' . "\n";
 
         print '<script type="text/javascript" charset="utf-8" src="../../../ueditor/ueditor.config.js"></script>' . "\n";
 
