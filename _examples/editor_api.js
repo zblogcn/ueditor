@@ -34,7 +34,6 @@
             'plugins/scrawl.js',
             'plugins/removeformat.js',
             'plugins/blockquote.js',
-            'plugins/indent.js',
             'plugins/preview.js',
             'plugins/paragraph.js',
             'plugins/directionality.js',
