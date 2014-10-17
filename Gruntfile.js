@@ -257,7 +257,7 @@ module.exports = function (grunt) {
 
     function updateConfigFile() {
 
-        var filename = 'ueditor.config.js',
+        var filename = 'ueditor.config.asp',
             file = grunt.file.read(filename),
             path = server + "/",
             suffix = server === "net" ? ".ashx" : "." + server;
