@@ -39,7 +39,7 @@ module.exports = function (grunt) {
 
         },
         packageJson = grunt.file.readJSON('package.json'),
-        server = grunt.option('server') || 'php',
+        server = grunt.option('server') || 'asp',
         encode = grunt.option('encode') || 'utf8',
         disDir = "dist/",
         banner = '/*!\n * UEditor\n * version: ' + packageJson.name + '\n * build: <%= new Date() %>\n */\n\n';
