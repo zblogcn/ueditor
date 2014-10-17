@@ -658,6 +658,7 @@ function exec(scrawlObj) {
                 }
             };
             options[editor.getOpt('scrawlFieldName')] = base64;
+
             var actionUrl = editor.getActionUrl(editor.getOpt('scrawlActionName')),
                 params = utils.serializeParam(editor.queryCommandValue('serverparam')) || '',
                 url = utils.formatUrl(actionUrl + (actionUrl.indexOf('?') == -1 ? '?':'&') + params);

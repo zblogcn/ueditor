@@ -50,6 +50,10 @@ class Uploader
      */
     public function __construct($fileField, $config, $type = "upload")
     {
+		global $zbp;
+		$this->stateMap['ERROR_TYPE_NOT_ALLOWED'] = $zbp->lang['error']['26'];
+		$this->stateMap['ERROR_SIZE_EXCEED'] = $zbp->lang['error']['27'];
+		$this->stateMap['ERROR_UNKNOWN'] = $zbp->lang['error']['0'];
         $this->fileField = $fileField;
         $this->config = $config;
         $this->type = $type;
@@ -60,8 +64,6 @@ class Uploader
         } else {
             $this->upFile();
         }
-
-        $this->stateMap['ERROR_TYPE_NOT_ALLOWED'] = iconv('unicode', 'utf-8', $this->stateMap['ERROR_TYPE_NOT_ALLOWED']);
     }
 
     /**
@@ -70,6 +72,7 @@ class Uploader
      */
     private function upFile()
     {
+		global $zbp;
         $file = $this->file = $_FILES[$this->fileField];
         if (!$file) {
             $this->stateInfo = $this->getStateInfo("ERROR_FILE_NOT_FOUND");
@@ -78,10 +81,10 @@ class Uploader
         if ($this->file['error']) {
             $this->stateInfo = $this->getStateInfo($file['error']);
             return;
-        } else if (!file_exists($file['tmp_name'])) {
+        }/* else if (!file_exists($file['tmp_name'])) {
             $this->stateInfo = $this->getStateInfo("ERROR_TMP_FILE_NOT_FOUND");
             return;
-        } else if (!is_uploaded_file($file['tmp_name'])) {
+        }*/ else if (!is_uploaded_file($file['tmp_name'])) {
             $this->stateInfo = $this->getStateInfo("ERROR_TMPFILE");
             return;
         }
@@ -105,22 +108,24 @@ class Uploader
             $this->stateInfo = $this->getStateInfo("ERROR_TYPE_NOT_ALLOWED");
             return;
         }
+		
+		$upload = new Upload;
+		$upload->Name = $this->fileName;
+		$upload->SourceName = $file['name'];
+		$upload->MimeType = $file['type'];
+		$upload->Size = $this->fileSize;
+		$upload->AuthorID = $zbp->user->ID;
+		
+		if (!$upload->SaveFile($file['tmp_name']))
+		{
+			$this->stateInfo = $this->getStateInfo("ERROR_FILE_MOVE");
+			return;
+		}
 
-        //创建目录失败
-        if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
-            $this->stateInfo = $this->getStateInfo("ERROR_CREATE_DIR");
-            return;
-        } else if (!is_writeable($dirname)) {
-            $this->stateInfo = $this->getStateInfo("ERROR_DIR_NOT_WRITEABLE");
-            return;
-        }
+		$upload->Save();
+		$this->fullName = $upload->Url;
+		$this->stateInfo = $this->stateMap[0];
 
-        //移动文件
-        if (!(move_uploaded_file($file["tmp_name"], $this->filePath) && file_exists($this->filePath))) { //移动失败
-            $this->stateInfo = $this->getStateInfo("ERROR_FILE_MOVE");
-        } else { //移动成功
-            $this->stateInfo = $this->stateMap[0];
-        }
     }
 
     /**
@@ -129,6 +134,7 @@ class Uploader
      */
     private function upBase64()
     {
+		global $zbp;
         $base64Data = $_POST[$this->fileField];
         $img = base64_decode($base64Data);
 
@@ -140,27 +146,16 @@ class Uploader
         $this->fileName = $this->getFileName();
         $dirname = dirname($this->filePath);
 
-        //检查文件大小是否超出限制
-        if (!$this->checkSize()) {
-            $this->stateInfo = $this->getStateInfo("ERROR_SIZE_EXCEED");
-            return;
-        }
-
-        //创建目录失败
-        if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
-            $this->stateInfo = $this->getStateInfo("ERROR_CREATE_DIR");
-            return;
-        } else if (!is_writeable($dirname)) {
-            $this->stateInfo = $this->getStateInfo("ERROR_DIR_NOT_WRITEABLE");
-            return;
-        }
-
-        //移动文件
-        if (!(file_put_contents($this->filePath, $img) && file_exists($this->filePath))) { //移动失败
-            $this->stateInfo = $this->getStateInfo("ERROR_WRITE_CONTENT");
-        } else { //移动成功
-            $this->stateInfo = $this->stateMap[0];
-        }
+		$upload = new Upload;
+		$upload->Name = $this->fileName;
+		$upload->SourceName = date("YmdHis") . '_scraw.png';
+		$upload->MimeType = 'image/png';
+		$upload->AuthorID = $zbp->user->ID;
+			
+		$upload->SaveBase64File($base64Data);
+		$upload->Save();
+		$this->fullName = $upload->Url;
+		$this->stateInfo = $this->stateMap[0];
 
     }
 
@@ -170,6 +165,7 @@ class Uploader
      */
     private function saveRemote()
     {
+		global $zbp;
         $imgUrl = htmlspecialchars($this->fileField);
         $imgUrl = str_replace("&amp;", "&", $imgUrl);
 
@@ -217,21 +213,21 @@ class Uploader
             return;
         }
 
-        //创建目录失败
-        if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
-            $this->stateInfo = $this->getStateInfo("ERROR_CREATE_DIR");
-            return;
-        } else if (!is_writeable($dirname)) {
-            $this->stateInfo = $this->getStateInfo("ERROR_DIR_NOT_WRITEABLE");
-            return;
-        }
-
-        //移动文件
-        if (!(file_put_contents($this->filePath, $img) && file_exists($this->filePath))) { //移动失败
-            $this->stateInfo = $this->getStateInfo("ERROR_WRITE_CONTENT");
-        } else { //移动成功
-            $this->stateInfo = $this->stateMap[0];
-        }
+		$upload = new Upload;
+		$upload->Name = $this->fileName;
+		$upload->SourceName = $this->fileName;
+		$upload->MimeType = $heads['Content-Type'];
+		$upload->Size = $this->fileSize;
+		$upload->AuthorID = $zbp->user->ID;
+		
+		if (!$upload->SaveBase64File(base64_encode($img)))
+		{
+			$this->stateInfo = $this->getStateInfo("ERROR_FILE_MOVE");
+			return;
+		}
+		
+		$upload->Save();
+		$this->fullName = $upload->Url;
 
     }
 
@@ -293,7 +289,7 @@ class Uploader
      * @return string
      */
     private function getFileName () {
-        return substr($this->filePath, strrpos($this->filePath, '/') + 1);
+        return substr($this->fullName, strrpos($this->fullName, '/') + 1);
     }
 
     /**
@@ -302,14 +298,9 @@ class Uploader
      */
     private function getFilePath()
     {
-        $fullname = $this->fullName;
-        $rootPath = $_SERVER['DOCUMENT_ROOT'];
-
-        if (substr($fullname, 0, 1) != '/') {
-            $fullname = '/' . $fullname;
-        }
-
-        return $rootPath . $fullname;
+        $fileName = $this->fileName;
+        global $blogpath;
+        return $blogpath . 'zb_users/upload/' . date('Y/m') . '/' . $fileName;
     }
 
     /**

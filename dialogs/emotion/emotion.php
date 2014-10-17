@@ -20,7 +20,7 @@
     <img id='faceReview' class='review'/>
 </div>
 <script type="text/javascript" src="../internal.js"></script>
-<script type="text/javascript" src="emotion.js.asp"></script>
+<script type="text/javascript" src="emotion.js.php"  charset="utf-8"></script>
 <script type="text/javascript">
     var emotion = {
         tabNum:0, //切换面板数量

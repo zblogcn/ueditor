@@ -113,7 +113,7 @@
 
         if($G('is_dynamic').checked) {
             var URL = editor.options.UEDITOR_HOME_URL,
-                url = [URL + (/\/$/.test(URL) ? '':'/') + "dialogs/map/show.asp" +
+                url = [URL + (/\/$/.test(URL) ? '':'/') + "dialogs/map/show.php" +
                     '#center=' + center.lng + ',' + center.lat,
                     '&zoom=' + zoom,
                     '&width=' + mapWidth,
