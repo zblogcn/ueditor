@@ -7,20 +7,7 @@ UE.plugin.register('copy', function () {
     return {
         bindEvents: {
             'ready': function () {
-                if (!browser.ie) {
-                    //if (window.ZeroClipboard) {
-                        //initZeroClipboard();
-                    //} else {
-                        utils.loadFile(document, {
-                            src: me.options.UEDITOR_HOME_URL + "third-party/zeroclipboard/ZeroClipboard.js",
-                            tag: "script",
-                            type: "text/javascript",
-                            defer: "defer"
-                        }, function () {
-                            //initZeroClipboard();
-                        });
-                    //}
-                }
+
             }
         },
         commands: {
