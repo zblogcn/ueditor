@@ -687,6 +687,8 @@
             this.getDom('toolbarmsg').style.display = 'none';
         },
         mapUrl:function (url) {
+            var ext = this.editor.options.serverUrl.match(/\.([a-zA-Z0-9]+?)$/)[1];
+            url = url.replace(/\.html$/, '.' + ext);
             return url ? url.replace('~/', this.editor.options.UEDITOR_HOME_URL || '') : ''
         },
         triggerLayout:function () {
