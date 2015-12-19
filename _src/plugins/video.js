@@ -20,7 +20,7 @@ UE.plugins['video'] = function (){
         var str;
         switch (type){
             case 'image':
-                str = '<img ' + (id ? 'id="' + id+'"' : '') + ' width="'+ width +'" height="' + height + '" _url="'+url+'" class="' + '"'  +
+                str = '<img ' + (id ? 'id="' + id+'"' : '') + ' width="'+ width +'" height="' + height + '" _url="'+url+'" class="' + classname + '"'  +
                     ' src="' + me.options.UEDITOR_HOME_URL+'themes/default/images/spacer.gif" style="background:url('+me.options.UEDITOR_HOME_URL+'themes/default/images/videologo.gif) no-repeat center center; border:1px solid gray;'+(align ? 'float:' + align + ';': '')+'" />'
                 break;
             case 'embed':
@@ -40,6 +40,7 @@ UE.plugins['video'] = function (){
     }
 
     function switchImgAndVideo(root,img2video){
+
         utils.each(root.getNodesByTagName(img2video ? 'img' : 'embed video'),function(node){
             var className = node.getAttr('class');
             if(className && className.indexOf('edui-faked-video') != -1){
