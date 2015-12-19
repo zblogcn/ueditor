@@ -16,6 +16,10 @@ $upload_dir = $blogpath . $upload_dir;
 #echo '/*' . $upload_dir . '*/' ;
 
 $output_js = "(function(){var URL;URL = '{$bloghost}zb_users/plugin/UEditor/';window.UEDITOR_CONFIG = {";
+$lang = strtolower($zbp->lang['lang']);
+if (!is_dir('./lang/' . $lang)) {
+	$lang = "zh-cn";
+}
 
 $array_config = array(
 	'UEDITOR_HOME_URL' => 'URL',
@@ -24,10 +28,10 @@ $array_config = array(
 	'toolbars' => "[ " .
 	"[ 'source', '|', 'undo', 'redo', '|', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript','forecolor', 'backcolor', '|', " .
 	"'insertorderedlist', 'insertunorderedlist','indent', 'justifyleft', 'justifycenter', 'justifyright','|', 'removeformat','formatmatch','autotypeset', 'pasteplain'], " .
-	"[ 'fontfamily', 'fontsize','|', 'emotion','link','music','insertimage','scrawl','insertvideo', 'attachment','spechars', 'map','|', "
+	"['paragraph', 'fontfamily', 'fontsize','|', 'emotion','link','music','insertimage','scrawl','insertvideo', 'attachment','spechars', 'map','|', "
 	. ($zbp->option['ZC_SYNTAXHIGHLIGHTER_ENABLE'] ? "'insertcode'," : '')
 	. "'blockquote', 'wordimage','inserttable', 'horizontal','fullscreen']]",
-	'shortcutMenu' => "['fontfamily', 'fontsize', 'bold', 'italic', 'underline', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist']",
+	'shortcutMenu' => "['fontfamily', 'fontsize', 'bold', 'italic', 'underline', 'forecolor', 'backcolor']",
 	'maximumWords' => 1000000000,
 	'wordCountMsg' => '"当前已输入 {#count} 个字符" ',
 	'initialContent' => '"<p></p>"',
@@ -35,16 +39,19 @@ $array_config = array(
 	'wordCount' => 'true',
 	'elementPathEnabled' => 'true',
 	'initialFrameHeight' => '300',
+	'imageMaxSize' => $zbp->option['ZC_UPLOAD_FILESIZE'] * 1024 * 1024,
+	'fileMaxSize' => $zbp->option['ZC_UPLOAD_FILESIZE'] * 1024 * 1024,
 	'toolbarTopOffset' => '200',
 	'sourceEditor' => '\'' . ($zbp->option['ZC_CODEMIRROR_ENABLE'] ? 'codemirror' : 'textarea') . '\'',
 	'theme' => '"default"',
 	'themePath' => 'URL +"themes/"',
-	'lang' => '\'zh-cn\'',
+	'lang' => '\'' . $lang . '\'',
 	'langPath' => 'URL+"lang/"',
 	'codeMirrorJsUrl' => 'URL+ "third-party/codemirror/codemirror.js"',
 	'codeMirrorCssUrl' => 'URL+ "third-party/codemirror/codemirror.css"',
 	"maxUpFileSize" => $zbp->option['ZC_UPLOAD_FILESIZE'],
 	"allowDivTransToP" => 'false',
+	"catchRemoteImageEnable" => "false"
 );
 
 foreach ($array_config as $key => $value) {

@@ -49,7 +49,6 @@
         'edittip':'~/dialogs/table/edittip.html',
         'edittable':'~/dialogs/table/edittable.html',
         'edittd':'~/dialogs/table/edittd.html',
-        'webapp':'~/dialogs/webapp/webapp.html',
         'snapscreen':'~/dialogs/snapscreen/snapscreen.html',
         'scrawl':'~/dialogs/scrawl/scrawl.html',
         'music':'~/dialogs/music/music.html',
@@ -57,7 +56,6 @@
         'background':'~/dialogs/background/background.html',
         'charts': '~/dialogs/charts/charts.html'
     };
-    console.log(baidu.editor);
 
     //为工具栏添加按钮，以下都是统一的按钮触发命令，所以写在一起
     var btnCmds = ['undo', 'redo', 'formatmatch',
