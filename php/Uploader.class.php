@@ -50,10 +50,10 @@ class Uploader
      */
     public function __construct($fileField, $config, $type = "upload")
     {
-		global $zbp;
-		$this->stateMap['ERROR_TYPE_NOT_ALLOWED'] = $zbp->lang['error']['26'];
-		$this->stateMap['ERROR_SIZE_EXCEED'] = $zbp->lang['error']['27'];
-		$this->stateMap['ERROR_UNKNOWN'] = $zbp->lang['error']['0'];
+	global $zbp;
+	$this->stateMap['ERROR_TYPE_NOT_ALLOWED'] = $zbp->lang['error']['26'];
+	$this->stateMap['ERROR_SIZE_EXCEED'] = $zbp->lang['error']['27'];
+	$this->stateMap['ERROR_UNKNOWN'] = $zbp->lang['error']['0'];
         $this->fileField = $fileField;
         $this->config = $config;
         $this->type = $type;
@@ -72,7 +72,7 @@ class Uploader
      */
     private function upFile()
     {
-		global $zbp;
+	global $zbp;
         $file = $this->file = $_FILES[$this->fileField];
         if (!$file) {
             $this->stateInfo = $this->getStateInfo("ERROR_FILE_NOT_FOUND");
@@ -134,7 +134,7 @@ class Uploader
      */
     private function upBase64()
     {
-		global $zbp;
+	global $zbp;
         $base64Data = $_POST[$this->fileField];
         $img = base64_decode($base64Data);
 
@@ -165,7 +165,7 @@ class Uploader
      */
     private function saveRemote()
     {
-		global $zbp;
+	global $zbp;
         $imgUrl = htmlspecialchars($this->fileField);
         $imgUrl = str_replace("&amp;", "&", $imgUrl);
 
@@ -182,7 +182,7 @@ class Uploader
         }
         //格式验证(扩展名验证和Content-Type验证)
         $fileType = strtolower(strrchr($imgUrl, '.'));
-        if (!in_array($fileType, $this->config['allowFiles']) || !stristr($heads['Content-Type'], "image")) {
+        if (!in_array($fileType, $this->config['allowFiles']) || !isset($heads['Content-Type']) || !stristr($heads['Content-Type'], "image")) {
             $this->stateInfo = $this->getStateInfo("ERROR_HTTP_CONTENTTYPE");
             return;
         }
