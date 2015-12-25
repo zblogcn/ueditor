@@ -11,30 +11,41 @@ UE.plugins['insertcode'] = function() {
             me.document)
     });
     me.setOpt('insertcode',{
-            'as3':'ActionScript3',
+            'actionscript':'ActionScript',
             'bash':'Bash/Shell',
-            'cpp':'C/C++',
-            'css':'Css',
-            'cf':'CodeFunction',
-            'c#':'C#',
-            'delphi':'Delphi',
+            'basic': 'BASIC',
+            'c': 'C',
+            'cpp':'C++',
+            'clike': 'CLike',
+            'css':'CSS',
+            'csharp':'C#',
+            'pascal':'Delphi/Pascal',
             'diff':'Diff',
             'erlang':'Erlang',
+            'fsharp':'F#',
+            'fortran': 'Fortran', 
+            'go': 'Go',
             'groovy':'Groovy',
-            'html':'Html',
+            'haskell': 'Haskell',
+            'markup':'HTML(Markup)',
             'java':'Java',
-            'jfx':'JavaFx',
-            'js':'Javascript',
-            'pl':'Perl',
-            'php':'Php',
-            'plain':'Plain Text',
+            'javascript':'Javascript',
+            'markdown':'Markdown',
+            'matlab': 'Matlab',
+            'objectivec': 'Objective-C',
+            'perl':'Perl',
+            'powershell': 'PowerShell',
+            'php':'PHP',
             'ps':'PowerShell',
             'python':'Python',
             'ruby':'Ruby',
+            'rust': 'Rust',
             'scala':'Scala',
-            'sql':'Sql',
-            'vb':'Vb',
-            'xml':'Xml'
+            'scss': 'SCSS',
+            'swift': 'Swift',
+            'sql':'SQL',
+            'typescript': 'TypeScript',
+            'markup':'XML'
     });
 
     /**
@@ -67,7 +78,7 @@ UE.plugins['insertcode'] = function() {
                 rng = me.selection.getRange(),
                 pre = domUtils.findParentByTagName(rng.startContainer,'pre',true);
             if(pre){
-                pre.className = 'brush:'+lang+';toolbar:false;';
+                pre.className = 'prism-highlight prism-language-'+lang;
             }else{
                 var code = '';
                 if(rng.collapsed){
@@ -147,7 +158,7 @@ UE.plugins['insertcode'] = function() {
 
                     });
                 }
-                me.execCommand('inserthtml','<pre id="coder"class="brush:'+lang+';toolbar:false">'+code+'</pre>',true);
+                me.execCommand('inserthtml','<pre id="coder" class="prism-highlight prism-language-'+lang+'">'+code+'</pre>',true);
 
                 pre = me.document.getElementById('coder');
                 domUtils.removeAttributes(pre,'id');
@@ -173,7 +184,7 @@ UE.plugins['insertcode'] = function() {
             var lang = '';
             utils.each(path,function(node){
                 if(node.nodeName =='PRE'){
-                    var match = node.className.match(/brush:([^;]+)/);
+                    var match = node.className.match(/language-([^;]+)/);
                     lang = match && match[1] ? match[1] : '';
                     return false;
                 }

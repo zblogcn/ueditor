@@ -4,8 +4,8 @@ UE.parse.register('insertcode',function(utils){
         if(typeof XRegExp == "undefined"){
             var jsurl,cssurl;
             if(this.rootPath !== undefined){
-                jsurl = utils.removeLastbs(this.rootPath)  + '/third-party/SyntaxHighlighter/shCore.pack.js';
-                cssurl = utils.removeLastbs(this.rootPath) + '/third-party/SyntaxHighlighter/shCoreDefault.pack.css';
+                jsurl = utils.removeLastbs(this.rootPath)  + '/third-party/prism/prism.js';
+                cssurl = utils.removeLastbs(this.rootPath) + '/third-party/prism/prism.css';
             }else{
                 jsurl = this.highlightJsUrl;
                 cssurl = this.highlightCssUrl;
