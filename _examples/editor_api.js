@@ -76,6 +76,7 @@
             'plugins/section.js',
             'plugins/serverparam.js',
             'plugins/insertfile.js',
+            'plugins/indent.js',
             'ui/ui.js',
             'ui/uiutils.js',
             'ui/uibase.js',

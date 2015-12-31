@@ -65,6 +65,9 @@
     /*float: left;*/
     /*overflow: hidden;*/
 }
+.edui-default .edui-editor-iframeholder iframe {
+    width: 99%;
+}
 
 .edui-default .edui-editor-bottomContainer {
     overflow: hidden;

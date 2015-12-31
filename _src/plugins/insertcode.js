@@ -43,7 +43,7 @@ UE.plugins['insertcode'] = function() {
             'scss': 'SCSS',
             'swift': 'Swift',
             'sql':'SQL',
-            'typescript': 'TypeScript',
+            'typescript': 'TypeScript'
     });
 
     /**

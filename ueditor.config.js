@@ -36,7 +36,7 @@
         , toolbars: [
         [
             'fullscreen', 'source', '|', 'undo', 'redo', '|',
-            'paragraph', 'fontfamily', 'fontsize', '|',
+            'paragraph', 'fontfamily', 'fontsize', '|', 'indent',
             'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript','|',
             'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist',
             
