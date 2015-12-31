@@ -27,7 +27,7 @@ UE.plugins['insertcode'] = function() {
             'go': 'Go',
             'groovy':'Groovy',
             'haskell': 'Haskell',
-            'markup':'HTML(Markup)',
+            'markup':'HTML/XML',
             'java':'Java',
             'javascript':'JavaScript',
             'markdown':'Markdown',
@@ -44,7 +44,6 @@ UE.plugins['insertcode'] = function() {
             'swift': 'Swift',
             'sql':'SQL',
             'typescript': 'TypeScript',
-            'markup':'XML'
     });
 
     /**
