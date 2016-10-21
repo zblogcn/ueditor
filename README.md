@@ -1,6 +1,8 @@
 Get Started
 =====
 
+> 鉴于目前 ISSUE 较多而维护时间较少，更为重要的是有很多重复的问题，因此特意整理了一份常见问题的 [FAQ Wiki](https://github.com/fex-team/ueditor/wiki/FAQ)。
+
 ## ueditor富文本编辑器介绍
 
 UEditor是由百度web前端研发部开发所见即所得富文本web编辑器，具有轻量，可定制，注重用户体验等特点，开源基于MIT协议，允许自由使用和修改代码。
@@ -9,7 +11,9 @@ UEditor是由百度web前端研发部开发所见即所得富文本web编辑器�
 
 ### 1.1 下载编辑器
 
-到官网下载ueditor最新版：[[官网地址]](http://ueditor.baidu.com/website/download.html#ueditor "官网下载地址")
+1. `git clone ` 仓库
+2. `npm install` 安装依赖（如果没有安装 grunt , 请先在全局安装 grunt）
+3. 在终端执行 `grunt default`
 
 ### 1.2 创建demo文件
 解压下载的包，在解压后的目录创建demo.html文件，填入下面的html代码
@@ -57,7 +61,7 @@ var ue = UE.getEditor('container', {
 
 通getContent和setContent方法可以设置和读取编辑器的内容
 ```javascript
-var ue = UE.getContent();
+var ue = UE.getEditor();
 //对编辑器的操作最好在编辑器ready之后再做
 ue.ready(function(){
     //设置编辑器的内容
@@ -78,6 +82,10 @@ ueditor 官网：[http://ueditor.baidu.com](http://ueditor.baidu.com "ueditor �
 ueditor API 文档：[http://ueditor.baidu.com/doc](http://ueditor.baidu.com/doc "ueditor API 文档")
 
 ueditor github 地址：[http://github.com/fex-team/ueditor](http://github.com/fex-team/ueditor "ueditor github 地址")
+
+ueditor 第三方插件贡献 wiki : [第三方插件贡献规范](http://ueditor.baidu.com/website/thirdproject.html)
+
+ueditor 贡献代码规范（javascript）： [javascript规范](https://github.com/fex-team/styleguide/blob/master/javascript.md)
 
 ## 3 第三方贡献
 
