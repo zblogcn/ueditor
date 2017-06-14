@@ -719,12 +719,23 @@
             var range = this.cellsRange,
                 leftTopCell = this.getCell(range.beginRowIndex, this.indexTable[range.beginRowIndex][range.beginColIndex].cellIndex);
 
-            if (leftTopCell.tagName == "TH" && range.endRowIndex !== range.beginRowIndex) {
-                var index = this.indexTable,
-                    info = this.getCellInfo(leftTopCell);
-                leftTopCell = this.getCell(1, index[1][info.colIndex].cellIndex);
-                range = this.getCellsRange(leftTopCell, this.getCell(index[this.rowsNum - 1][info.colIndex].rowIndex, index[this.rowsNum - 1][info.colIndex].cellIndex));
-            }
+      // 这段关于行表头或者列表头的特殊处理会导致表头合并范围错误
+      // 为什么有这段代码的原因未明，暂且注释掉
+      // if (
+      //   leftTopCell.tagName == "TH" &&
+      //   range.endRowIndex !== range.beginRowIndex
+      // ) {
+      //   var index = this.indexTable,
+      //     info = this.getCellInfo(leftTopCell);
+      //   leftTopCell = this.getCell(1, index[1][info.colIndex].cellIndex);
+      //   range = this.getCellsRange(
+      //     leftTopCell,
+      //     this.getCell(
+      //       index[this.rowsNum - 1][info.colIndex].rowIndex,
+      //       index[this.rowsNum - 1][info.colIndex].cellIndex
+      //     )
+      //   );
+      // }
 
             // 删除剩余的Cells
             var cells = this.getCells(range);
@@ -799,7 +810,7 @@
                     row.appendChild(cell);
                     if(!isInsertTitle) replaceTdToTh(colIndex, cell, row);
                 }
-                
+
                 if(isInsertTitle) {
                     thead = table.createTHead();
                     thead.insertBefore(row, thead.firstChild);
