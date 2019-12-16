@@ -70,6 +70,7 @@
             'plugins/customstyle.js',
             'plugins/catchremoteimage.js',
             'plugins/insertparagraph.js',
+            'plugins/video.js',
             'plugins/music.js',
             'plugins/autoupload.js',
             'plugins/autosave.js',
